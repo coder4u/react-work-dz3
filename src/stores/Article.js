@@ -17,4 +17,8 @@ export default class Article extends BasicStore {
             }
         })
     }
+
+    addComment = (id, commentId) => {
+        this._items[id].comments.push(commentId)
+    }
 }

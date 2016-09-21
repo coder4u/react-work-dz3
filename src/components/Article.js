@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import CommentList from './CommentList'
+import CommentForm from './CommentForm'
 import toggleOpen from '../decorators/toggleOpen'
 import { deleteArticle } from '../AC/articles'
 import { commentStore } from '../stores'
@@ -34,6 +35,7 @@ class Article extends Component {
         const textItem = isOpen ? <section>
             {text}
             <div><CommentList comments = {article.getRelation('comments')} ref="list" /></div>
+			<CommentForm showCommentsAfterAdd={this.showCommentsAfterAdd} articleId={id} />
         </section> : null
         return (
             <div>
@@ -50,6 +52,12 @@ class Article extends Component {
         ev.preventDefault()
         deleteArticle(this.props.article.id)
     }
+
+    showCommentsAfterAdd = () => {
+		this.refs.list.setState({
+			isOpen: true
+		})
+	}
 }
 
 

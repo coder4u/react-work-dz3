@@ -11,8 +11,8 @@ class AppContainer extends Component {
     }
 
     componentDidMount() {
-        commentStore.addChangeListener(this.handleChange)
         articleStore.addChangeListener(this.handleChange)
+        commentStore.addChangeListener(this.handleChange)
     }
 
     componentWillUnmount() {
@@ -21,7 +21,7 @@ class AppContainer extends Component {
     }
 
     handleChange = () => {
-        this.setState({
+		this.setState({
             articles: articleStore.getAll()
         })
     }
